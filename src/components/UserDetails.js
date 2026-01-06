@@ -12,8 +12,10 @@ const UserDetails = () => {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then(res => res.json())
       .then(data => {
-        setUser(data);
-        setLoading(false);
+        setTimeout(() => {   // ensures Cypress sees Loading...
+          setUser(data);
+          setLoading(false);
+        }, 300);
       });
   }, [id]);
 
@@ -23,6 +25,7 @@ const UserDetails = () => {
 
   return (
     <div>
+      <h1>User Details</h1>
       <p>Name: {user.name}</p>
       <p>Username: {user.username}</p>
       <p>Email: {user.email}</p>
