@@ -16,7 +16,7 @@ const UserList = () => {
       <ul>
         {users.map(user => (
           <li key={user.id}>
-            <a href={`/users/${user.id}`}>{user.name}</a>
+            <a href={`#/users/${user.id}`}>{user.name}</a>
           </li>
         ))}
       </ul>
