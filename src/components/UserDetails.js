@@ -9,14 +9,12 @@ const UserDetails = () => {
   useEffect(() => {
     setLoading(true);
 
-    setTimeout(() => {
-      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-        .then(res => res.json())
-        .then(data => {
-          setUser(data);
-          setLoading(false);
-        });
-    }, 300); // forces Cypress to see Loading...
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setUser(data);
+        setLoading(false);
+      });
   }, [id]);
 
   if (loading) {
