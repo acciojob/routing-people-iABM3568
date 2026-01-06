@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -9,12 +9,14 @@ const UserDetails = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setUser(data);
-        setLoading(false);
-      });
+    setTimeout(() => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          setUser(data);
+          setLoading(false);
+        });
+    }, 300); // forces Cypress to see Loading...
   }, [id]);
 
   if (loading) {
@@ -28,8 +30,6 @@ const UserDetails = () => {
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
-
-      <Link to="/">Back</Link>
     </div>
   );
 };
